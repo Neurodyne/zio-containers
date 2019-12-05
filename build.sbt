@@ -21,21 +21,18 @@ lazy val psqlDeps = libraryDependencies ++= Seq(
 )
 
 lazy val elasticDeps = libraryDependencies ++= Seq(
-  // "com.sksamuel.elastic4s" %% "elastic4s-client-esjava" % Elastic4sVersion,
-  "com.sksamuel.elastic4s" %% "elastic4s-core"         % Elastic4sVersion,
-  "com.sksamuel.elastic4s" %% "elastic4s-http"         % Elastic4sVersion,
-  "com.sksamuel.elastic4s" %% "elastic4s-http-streams" % Elastic4sVersion,
-  "com.sksamuel.elastic4s" %% "elastic4s-testkit"      % Elastic4sVersion % "test"
+  "com.sksamuel.elastic4s" %% "elastic4s-core" % Elastic4sVersion,
+  "com.sksamuel.elastic4s" %% "elastic4s-http" % Elastic4sVersion
 )
 
 lazy val zioDeps = Seq(
   libraryDependencies ++= Seq(
-    "dev.zio" %% "zio"              % ZioVersion,
-    "dev.zio" %% "zio-interop-cats" % ZioCatsVersion,
-    "dev.zio" %% "zio-test"         % ZioVersion % "test",
-    "dev.zio" %% "zio-test-sbt"     % ZioVersion % "test"
-  ),
-  testFrameworks := Seq(new TestFramework("zio.test.sbt.ZTestFramework"))
+    "dev.zio" %% "zio" % ZioVersion
+    // "dev.zio" %% "zio-interop-cats" % ZioCatsVersion,
+    // "dev.zio" %% "zio-test"         % ZioVersion % "test",
+    // "dev.zio" %% "zio-test-sbt"     % ZioVersion % "test"
+  )
+  // testFrameworks := Seq(new TestFramework("zio.test.sbt.ZTestFramework"))
 )
 
 lazy val catsDeps =
@@ -57,7 +54,8 @@ lazy val root = (project in file("."))
       "com.dimafeng"  %% "testcontainers-scala" % TcVersion        % "test"
     ),
     elasticDeps,
-    psqlDeps
+    psqlDeps,
+    zioDeps
   )
 
 // Refine scalac params from tpolecat
